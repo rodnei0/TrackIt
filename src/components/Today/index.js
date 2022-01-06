@@ -1,6 +1,16 @@
+import Top from "../Top";
+import { Container } from './styles';
+
 function Today() {
+
+    const token = localStorage.getItem("token");
+    console.log(token);
+
     return (
-        <h1>TESTE DE ROTA</h1>
+        <Container>
+            <h1>TESTE DE ROTA</h1>
+            <Top />
+        </Container>
     );
 };
 
