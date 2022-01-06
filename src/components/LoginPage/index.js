@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
 import logo from "../../assets/images/trackit.png";
 import { Container, Figure, Input, Button, P } from './styles';
+import { useState } from 'react';
 
-function Login({ email, setEmail, password, setPassword }) {
+function Login() {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
     return (
         <Container>

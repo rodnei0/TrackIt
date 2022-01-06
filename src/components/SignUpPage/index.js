@@ -1,16 +1,24 @@
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useNavigate  } from 'react-router-dom';
+import { trackPromise } from 'react-promise-tracker';
 import { Container, Figure, Form, Input, Button, P } from './styles';
+import { usePromiseTracker } from "react-promise-tracker";
 import logo from "../../assets/images/trackit.png";
 import axios from 'axios';
-import { trackPromise } from 'react-promise-tracker';
 import Spinner from '../Spinner';
 
-
-function SingUp({ email, setEmail, password, setPassword, name, setName, image, setImage }) {
+function SingUp() {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [name, setName] = useState("");
+    const [image, setImage] = useState("");
+    
+    const { promiseInProgress } = usePromiseTracker();
+    let navigate = useNavigate();
 
     function handleSignUp(event) {
         event.preventDefault();
-        
+
         const data = {
             email: email,
             name: name,
@@ -18,16 +26,22 @@ function SingUp({ email, setEmail, password, setPassword, name, setName, image, 
             image: image,
         };
 
-
         function fetch() {
             const promisse = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up", data);
-            promisse.then(response => alert("ta indo"));
-            promisse.catch(error => alert(error.response.data.message));
-            
+            promisse.then(response => navigate("/"));
+            promisse.catch(handleError);
             return promisse ;
         }
+
+        function handleError(error) {
+            if (error.response.status === 422) {
+                alert("Preencha todos os campos corretamente!")
+            } else if (error.response.status === 409) {
+                alert("Usuário já cadastrado!")
+            }
+        }
+        
         trackPromise(fetch());
-                
     }
 
     return (
@@ -36,10 +50,10 @@ function SingUp({ email, setEmail, password, setPassword, name, setName, image, 
                 <img src={logo} alt="logo"/>
             </Figure>
             <Form onSubmit={handleSignUp}>
-                <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='email'></Input>
-                <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='senha'></Input>
-                <Input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder='nome'></Input>
-                <Input type="url" value={image} onChange={(e) => setImage(e.target.value)} placeholder='foto' ></Input>
+                <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} disabled={promiseInProgress} placeholder='email'></Input>
+                <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} disabled={promiseInProgress} placeholder='senha'></Input>
+                <Input type="text" value={name} onChange={(e) => setName(e.target.value)} disabled={promiseInProgress} placeholder='nome'></Input>
+                <Input type="url" value={image} onChange={(e) => setImage(e.target.value)} disabled={promiseInProgress} placeholder='foto' ></Input>
                 <Button type='submit'><Spinner />Cadastrar</Button>
                 
             </Form>
