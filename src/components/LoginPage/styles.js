@@ -27,7 +27,6 @@ const Input = styled.input`
     line-height: 25px;
     color: #DBDBDB;
 
-    background: #FFFFFF;
     border: 1px solid #D5D5D5;
     border-radius: 5px;
 
@@ -37,6 +36,10 @@ const Input = styled.input`
 const Button = styled.button`
     width: 303px;
     height: 45px;
+
+    font-size: 20.976px;
+    line-height: 26px;
+    color: #FFFFFF;
 
     background: #52B6FF;
     border: 0;

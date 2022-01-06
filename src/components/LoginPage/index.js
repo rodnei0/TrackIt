@@ -1,10 +1,8 @@
-import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import logo from "../../assets/images/trackit.png";
-import { Container, Figure, Input, Button, P } from './style';
+import { Container, Figure, Input, Button, P } from './styles';
 
-function Login() {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+function Login({ email, setEmail, password, setPassword }) {
 
     return (
         <Container>
@@ -13,8 +11,10 @@ function Login() {
             </Figure>
             <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='email'></Input>
             <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='senha'></Input>
-            <Button>Entrar</Button>
-            <P>Não tem uma conta? Cadastre-se!</P>
+            <Button onClick={(e) => alert(email)}>Entrar</Button>
+            <Link to="/signup">
+                <P>Não tem uma conta? Cadastre-se!</P>
+            </Link>
         </Container>
     );
 }
