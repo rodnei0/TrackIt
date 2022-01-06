@@ -1,61 +1,71 @@
 import styled from 'styled-components';
 
-const Container = styled.div`
-    padding-top: 70px;
-    background: #E5E5E5;
-    min-height: 100vh;
-`;
+const Container = styled.section`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-const Figure = styled.figure`
-    img {
-        width: 130px;
-        heigth: 140px;
+    padding-top: 98px;
+    background: #F2F2F2;
+    min-height: 100vh;
+
+    h1 {
+        font-size: 22.976px;
+        line-height: 29px;
+        color: #126BA5;
+    
+        width: 340px;
     }
 
-    margin-bottom: 30px;
+    h3 {
+        font-size: 17.976px;
+        line-height: 22px;
+        color: #BABABA;
+    
+        width: 340px;
+    }
 `;
 
-const Form = styled.form`
-    width: 303px;
-`;
+const Div = styled.div`
+    display: flex;
+    justify-content: space-between;
 
-const Input = styled.input`
-    width: 303px;
-    height: 45px;
-    padding-left: 5px;
+    width: 340px;
+    height: 94px;
 
-    font-size: 18px;
-    line-height: 25px;
-
-    border: 1px solid #D5D5D5;
+    background: #FFFFFF;
     border-radius: 5px;
 
-    margin-bottom: 6px;
-`;
+    margin-top: 28px;
+    padding: 13px;
 
-const Button = styled.button`
-    width: 303px;
-    height: 45px;
+    h2 {
+        font-size: 19.976px;
+        line-height: 25px;
 
-    font-size: 20.976px;
-    line-height: 26px;
-    color: #FFFFFF;
+        color: #666666;
+    }
 
-    background: #52B6FF;
-    border: 0;
-    border-radius: 4.63636px;
+    p {
+        font-size: 12.976px;
+        line-height: 16px;
 
-    margin-bottom: 25px;
-`;
+        color: #666666;
 
-const P = styled.p`
-    font-size: 13.976px;
-    line-height: 17px;
-    text-decoration-line: underline;
+        margin-top: 5px;
+    }
 
-    color: #52B6FF;
+    span {
+        width: 69px;
+        height: 69px;
+
+        background: #EBEBEB;
+        border: 1px solid #E7E7E7;
+        border-radius: 5px;
+    }
+
 `;
 
 export {
-    Container, Figure, Form, Input, Button, P
+    Container, Div
 }
