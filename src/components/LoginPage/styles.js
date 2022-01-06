@@ -18,6 +18,10 @@ const Figure = styled.figure`
     margin-bottom: 30px;
 `;
 
+const Form = styled.form`
+    width: 303px;
+`;
+
 const Input = styled.input`
     width: 303px;
     height: 45px;
@@ -56,5 +60,5 @@ const P = styled.p`
 `;
 
 export {
-    Container, Figure, Input, Button, P
+    Container, Figure, Form, Input, Button, P
 }

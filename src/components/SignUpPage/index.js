@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate  } from 'react-router-dom';
-import { trackPromise } from 'react-promise-tracker';
+import { usePromiseTracker, trackPromise } from 'react-promise-tracker';
 import { Container, Figure, Form, Input, Button, P } from './styles';
-import { usePromiseTracker } from "react-promise-tracker";
 import logo from "../../assets/images/trackit.png";
 import axios from 'axios';
 import Spinner from '../Spinner';
@@ -55,7 +54,6 @@ function SingUp() {
                 <Input type="text" value={name} onChange={(e) => setName(e.target.value)} disabled={promiseInProgress} placeholder='nome'></Input>
                 <Input type="url" value={image} onChange={(e) => setImage(e.target.value)} disabled={promiseInProgress} placeholder='foto' ></Input>
                 <Button type='submit'><Spinner />Cadastrar</Button>
-                
             </Form>
             <Link to="/">
                 <P>Já tem uma conta? Faça login!</P>
