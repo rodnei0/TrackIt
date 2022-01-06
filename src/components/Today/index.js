@@ -1,15 +1,19 @@
-import Top from "../Top";
+import Bottom from "../BottomBar";
+import Top from "../TopBar";
 import { Container } from './styles';
 
 function Today() {
 
-    const token = localStorage.getItem("token");
-    console.log(token);
+    const serializedUser = localStorage.getItem("user");
+    const user = JSON.parse(serializedUser);
+
+    console.log(user);
 
     return (
         <Container>
-            <h1>TESTE DE ROTA</h1>
             <Top />
+            <h1>TESTE DE ROTA</h1>
+            <Bottom />
         </Container>
     );
 };

@@ -1,13 +1,14 @@
 import styled from "styled-components"
 
 function Top() {
-    const image = localStorage.getItem("image");
+    const serializedUser = localStorage.getItem("user");
+    const user = JSON.parse(serializedUser);
 
     return (
         <Header>
             <P>TrackIt</P>
             <Figure>
-                <img src={image} alt="profile"></img>
+                <img src={user.image} alt="profile"></img>
             </Figure>
         </Header>
     )

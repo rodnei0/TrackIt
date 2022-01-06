@@ -23,13 +23,16 @@ function Login() {
 
         function fetch() {
             const promisse = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", data);
-            promisse.then(response => {
-                localStorage.setItem("token", response.data.token);
-                localStorage.setItem("image", response.data.image);
-                navigate("/hoje");
-            });
+            promisse.then(handleResponse);
             promisse.catch(handleError);
             return promisse ;
+        }
+
+        function handleResponse(response) {
+            const user = response.data;
+            const serializedUser = JSON.stringify(user);
+            localStorage.setItem("user", serializedUser);
+            navigate("/hoje");
         }
 
         function handleError(error) {
