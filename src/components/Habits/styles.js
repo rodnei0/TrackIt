@@ -13,21 +13,39 @@ const Container = styled.section`
         font-size: 22.976px;
         line-height: 29px;
         color: #126BA5;
-
-        width: 340px;
     }
-
     
     h3 {
         font-size: 17.976px;
         line-height: 22px;
         color: #BABABA;
         
-        width: 340px;
         margin-top: 17px;
+        width: 340px;
+    }
+    
+    button {
+        width: 40px;
+        height: 35px;
+
+        background: #52B6FF;
+        border-radius: 4.63636px;
+        border: 0;
+
+        font-size: 26.976px;
+        line-height: 34px;
+        color: #FFFFFF;
+
     }
 `;
 
+const Div = styled.div`
+    display: flex;
+    justify-content: space-between;
+
+    width: 340px;
+`;
+
 export {
-    Container
+    Container, Div
 }
