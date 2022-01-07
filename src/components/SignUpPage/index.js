@@ -53,7 +53,7 @@ function SingUp() {
                 <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} disabled={promiseInProgress} placeholder='senha'></Input>
                 <Input type="text" value={name} onChange={(e) => setName(e.target.value)} disabled={promiseInProgress} placeholder='nome'></Input>
                 <Input type="url" value={image} onChange={(e) => setImage(e.target.value)} disabled={promiseInProgress} placeholder='foto' ></Input>
-                <Button type='submit'><Spinner />Cadastrar</Button>
+                <Button type='submit' hide={promiseInProgress}><Spinner />Cadastrar</Button>
             </Form>
             <Link to="/">
                 <P>Já tem uma conta? Faça login!</P>

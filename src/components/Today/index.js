@@ -8,6 +8,7 @@ function Today() {
 
     // const serializedUser = localStorage.getItem("user");
     // const user = JSON.parse(serializedUser);
+    // console.log (user.token);
 
     let now = dayjs();
 

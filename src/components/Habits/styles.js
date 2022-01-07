@@ -23,8 +23,15 @@ const Container = styled.section`
         margin-top: 17px;
         width: 340px;
     }
-    
-    div button {
+`;
+
+const Div = styled.div`
+    display: flex;
+    justify-content: space-between;
+
+    width: 340px;
+
+    button {
         width: 40px;
         height: 35px;
 
@@ -38,15 +45,8 @@ const Container = styled.section`
     }
 `;
 
-const Div = styled.div`
-    display: flex;
-    justify-content: space-between;
-
-    width: 340px;
-`;
-
 const Span = styled.span`
-    display: flex;
+    display: ${props => props.hide ? "none" : "flex"};
     flex-direction: column;
     align-items: center;
     
@@ -64,22 +64,6 @@ const Span = styled.span`
         flex-wrap:wrap;
     }
 
-    div button {
-        width: 30px;
-        height: 30px;
-        
-        background: #FFFFFF;
-        border: 1px solid #D5D5D5;
-        box-sizing: border-box;
-        border-radius: 5px;
-
-        font-size: 19.976px;
-        line-height: 25px;
-        color: #DBDBDB;
-
-        margin-right: 4px;
-    }
-
     span {
         display: flex;
         justify-content: flex-end;
@@ -87,6 +71,22 @@ const Span = styled.span`
 
         width: 100%;
     }
+`;
+
+const DayButton = styled.button`
+    width: 30px;
+    height: 30px;
+
+    background: ${props => props.isSelected ? "#CFCFCF" : "#FFFFFF"};
+    border: 1px solid #D5D5D5;
+    box-sizing: border-box;
+    border-radius: 5px;
+
+    font-size: 19.976px;
+    line-height: 25px;
+    color: #DBDBDB;
+
+    margin-right: 4px;
 `;
 
 const Form = styled.form`
@@ -133,8 +133,14 @@ const SaveButton = styled.button`
     background: #52B6FF;
     border: 0;
     border-radius: 4.63636px;
+
+    p {
+        display: ${props => props.hide ? 'none' : 'flex'};
+        justify-content: center;
+        width: 100%;
+    }
 `;
 
 export {
-    Container, Div, Span, Input, CancelButton, SaveButton
+    Container, Form, Div, Span, Input, CancelButton, SaveButton, DayButton
 }

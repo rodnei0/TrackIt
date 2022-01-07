@@ -49,6 +49,12 @@ const Button = styled.button`
     border-radius: 4.63636px;
 
     margin-bottom: 25px;
+
+    p {
+        display: ${props => props.hide ? 'none' : 'flex'};
+        justify-content: center;
+        width: 100%;
+    }
 `;
 
 const P = styled.p`

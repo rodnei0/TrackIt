@@ -55,7 +55,7 @@ function Login() {
             <Form onSubmit={handleSignIn}>
                 <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} disabled={promiseInProgress} placeholder='email'></Input>
                 <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} disabled={promiseInProgress} placeholder='senha'></Input>
-                <Button type='submit'><Spinner />Entrar</Button>
+                <Button type='submit' hide={promiseInProgress}><Spinner /><p>Entrar</p></Button>
             </Form>
             <Link to="/cadastro">
                 <P>Não tem uma conta? Cadastre-se!</P>
