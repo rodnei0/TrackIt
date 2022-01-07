@@ -12,20 +12,22 @@ function Today() {
     let now = dayjs();
 
     return (
-        <Container>
+        <>
             <Top />
-            <h1>{now.locale(ptbr).format("dddd, DD/MM")}</h1>
-            <h3>Nenhum hábito concluído ainda</h3>
-            <Div>
-                <div>
-                    <h2>Ler 1 capítulo de livro</h2>
-                    <p>Sequência atual: 3 dias</p>
-                    <p>Seu recorde: 5 dias</p>
-                </div>
-                <span></span>
-            </Div>
+            <Container>
+                <h1>{now.locale(ptbr).format("dddd, DD/MM")}</h1>
+                <h3>Nenhum hábito concluído ainda</h3>
+                <Div>
+                    <div>
+                        <h2>Ler 1 capítulo de livro</h2>
+                        <p>Sequência atual: 3 dias</p>
+                        <p>Seu recorde: 5 dias</p>
+                    </div>
+                    <span></span>
+                </Div>
+            </Container>
             <Bottom />
-        </Container>
+        </>
     );
 };
 

@@ -4,12 +4,14 @@ import { Container} from './styles';
 
 function History() {
     return (
-        <Container>
+        <>
             <Top />
-            <h1>Histórico</h1>
-            <h3>Em breve você poderá ver o histórico dos seus hábitos aqui!</h3>
+            <Container>
+                <h1>Histórico</h1>
+                <h3>Em breve você poderá ver o histórico dos seus hábitos aqui!</h3>
+            </Container>
             <Bottom />
-        </Container>
+        </>
     );
 };
 
