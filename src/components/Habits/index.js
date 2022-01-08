@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { usePromiseTracker, trackPromise } from 'react-promise-tracker';
-import Bottom from '../BottomBar';
-import Top from '../TopBar';
-import axios from 'axios';
-import { Container, Div, Span, Input, CancelButton, SaveButton, DayButton } from './styles';
-import Spinner from '../Spinner';
-import styled from 'styled-components';
+import { Container, Div, H3 } from './styles';
 import { useEffect } from 'react/cjs/react.development';
+import Top from '../TopBar';
+import Bottom from '../BottomBar';
+import MyHabits from './myhabits';
+import CreateHabits from './createhabits';
+import axios from 'axios';
 
 function Habits() {
     const days = [  {id: 7, name: "D"}, 
@@ -45,10 +45,9 @@ function Habits() {
             hideText = true;
         }
         useEffect(() => {
-        console.log("entrei");
             const promisse = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", config);
             promisse.then(response => setHabits([...response.data]));
-        }, [habit]);
+        }, [habits]);
     }
     
     function handleDisplay(option) {
@@ -68,17 +67,22 @@ function Habits() {
         setSelectedDays([...selectedDays, day])
     }
 
+    function handleDeletion(id) {
+        const promisse = axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`, config);
+    }
+    
+    function handlePostResponse() {
+        setHabits([...habits]);
+        setHabit("");
+        setSelectedDays([]);
+        setHide(true);
+    }
+    
     function fetch() {
         const promisse = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", data, config);
         promisse.then(handlePostResponse);
         promisse.catch(response => console.log(response));
         return promisse ;
-    }
-
-    function handlePostResponse() {
-        setHabit("");
-        setSelectedDays([]);
-        setHide(true);
     }
 
     HandleHabits();
@@ -91,29 +95,18 @@ function Habits() {
                     <h1>Meus Hábitos</h1>
                     <button onClick={() => handleDisplay("create")}>+</button>
                 </Div>
-                <Span hide={hide}>
-                    <div>
-                            <Input value={habit} onChange={(e) => setHabit(e.target.value)} disabled={promiseInProgress} placeholder='nome do hábito'></Input>
-                            {days.map(day => (
-                                <DayButton onClick={() => handleSelection(day.id)} isSelected={selectedDays.includes(day.id)} key={day.id} disabled={promiseInProgress}>{day.name}</DayButton>
-                                ))
-                            }
-                    </div>
-                    <span>
-                        <CancelButton onClick={() => handleDisplay("cancel")}>Cancelar</CancelButton>
-                        <SaveButton onClick={() => trackPromise(fetch())} hide={promiseInProgress}><Spinner /><p>Salvar</p></SaveButton>
-                    </span>
-                </Span>
-                {habits.map(habit => (
-                    <MyHabits key={habit.id}>
-                        <p>{habit.name}</p>
-                        {days.map(day => (
-                                    <DayButton isSelected={habit.days.includes(day.id)} key={day.id}>{day.name}</DayButton>
-                                    ))
-                                }
-                    </MyHabits>
-                    ))
-                }
+                <CreateHabits   
+                    hide={hide} 
+                    habit={habit}
+                    setHabit={setHabit}
+                    promiseInProgress={promiseInProgress}
+                    days={days}
+                    handleSelection={handleSelection}
+                    selectedDays={selectedDays}
+                    handleDisplay={handleDisplay}
+                    fetch={fetch}>
+                </CreateHabits>
+                <MyHabits habits={habits} days={days} handleDeletion={handleDeletion}></MyHabits>
                 <H3 hide={hideText}>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</H3>
             </Container>
             <Bottom />
@@ -122,26 +115,3 @@ function Habits() {
 };
 
 export default Habits;
-
-const MyHabits = styled.div`
-    width: 340px;
-    height: 91px;
-
-    background: #FFFFFF;
-    border-radius: 5px;
-
-    margin-top: 20px;
-    padding: 18px;
-
-    p {
-        font-size: 19.976px;
-        line-height: 25px;
-
-        color: #666666;
-        margin-bottom: 6px;
-    }
-`;
-
-const H3 = styled.h3`
-    display: ${props => props.hide ? 'none' : 'flex'};
-`;
