@@ -89,10 +89,6 @@ const DayButton = styled.button`
     margin-right: 4px;
 `;
 
-const Form = styled.form`
-    width: 303px;
-`;
-
 const Input = styled.input`
     width: 303px;
     height: 45px;
@@ -142,5 +138,5 @@ const SaveButton = styled.button`
 `;
 
 export {
-    Container, Form, Div, Span, Input, CancelButton, SaveButton, DayButton
+    Container, Div, Span, Input, CancelButton, SaveButton, DayButton
 }
