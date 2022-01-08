@@ -7,6 +7,7 @@ const Header = styled.header`
     height: 70px;
 
     position: fixed;
+    z-index: 2;
     top: 0;
     left: 0;
     right: 0;

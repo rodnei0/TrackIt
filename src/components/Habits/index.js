@@ -68,7 +68,9 @@ function Habits() {
     }
 
     function handleDeletion(id) {
-        const promisse = axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`, config);
+        if (window.confirm("Tem certeza?")){
+            const promisse = axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`, config);
+        }
     }
     
     function handlePostResponse() {
@@ -83,6 +85,16 @@ function Habits() {
         promisse.then(handlePostResponse);
         promisse.catch(response => console.log(response));
         return promisse ;
+    }
+    
+    function verifyHabit() {
+        if (habit === "") {
+            alert("De um nome para o seu habito!");
+        } else if (selectedDays.length === 0) {
+            alert("Selecione pelo menos um dia!");
+        } else {
+            trackPromise(fetch())
+        }
     }
 
     HandleHabits();
@@ -104,7 +116,7 @@ function Habits() {
                     handleSelection={handleSelection}
                     selectedDays={selectedDays}
                     handleDisplay={handleDisplay}
-                    fetch={fetch}>
+                    verifyHabit={verifyHabit}>
                 </CreateHabits>
                 <MyHabits habits={habits} days={days} handleDeletion={handleDeletion}></MyHabits>
                 <H3 hide={hideText}>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</H3>

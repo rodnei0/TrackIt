@@ -6,6 +6,7 @@ const Container = styled.section`
     align-items: center;
 
     padding-top: 98px;
+    padding-bottom: 128px;
     background: #F2F2F2;
     min-height: 100vh;
 
@@ -171,6 +172,7 @@ const HabitsStyle = styled.div`
 const H3 = styled.h3`
     display: ${props => props.hide ? 'none' : 'flex'};
 `;
+
 
 export {
     Container, Div, Span, Input, CancelButton, SaveButton, DayButton, HabitsStyle, H3
