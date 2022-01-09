@@ -7,7 +7,7 @@ function Spinner() {
 
   return (
     promiseInProgress && (
-        <Loader type="ThreeDots" color="#ffffff" height="35"/>
+        <Loader type="ThreeDots" color="#ffffff" height="15"/>
     )
   );
 };

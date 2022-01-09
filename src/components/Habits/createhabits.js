@@ -14,7 +14,7 @@ function CreateHabits({ hide, habit, setHabit, promiseInProgress, days, handleSe
             </div>
             <span>
                 <CancelButton onClick={() => handleDisplay("cancel")}>Cancelar</CancelButton>
-                <SaveButton onClick={verifyHabit} hide={promiseInProgress}><Spinner /><p>Salvar</p></SaveButton>
+                <SaveButton onClick={verifyHabit} hide={promiseInProgress} disabled={promiseInProgress}><Spinner /><p>Salvar</p></SaveButton>
             </span>
         </Span>
         </>

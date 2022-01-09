@@ -23,6 +23,7 @@ const Container = styled.section`
         color: #BABABA;
     
         width: 340px;
+        margin-top: 5px;
     }
 `;
 
@@ -34,6 +35,7 @@ const Div = styled.div`
     height: 94px;
 
     background: #FFFFFF;
+    
     border-radius: 5px;
 
     margin-top: 28px;
@@ -49,10 +51,13 @@ const Div = styled.div`
     p {
         font-size: 12.976px;
         line-height: 16px;
-
         color: #666666;
 
         margin-top: 5px;
+
+        strong {
+            color: ${props => props.done ? '#8FC549' : '#666666'};
+        }
     }
 
     span {

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { usePromiseTracker, trackPromise } from 'react-promise-tracker';
 import { Container, Div, H3 } from './styles';
 import { useEffect } from 'react/cjs/react.development';
@@ -34,29 +34,21 @@ function Habits() {
         days: selectedDays,
     };
 
-    const config = {
-        headers: {
-            "Authorization": `Bearer ${user.token}`
+    const config = useMemo(() => {
+        const token = {
+            headers: {
+                "Authorization": `Bearer ${user.token}`
+            }
         }
-    }
+        return token;
+    }, [user.token]);
     
-    function fetch() {
-        const promisse = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", data, config);
-        promisse.then(handlePostResponse);
-        promisse.catch(response => console.log(response));
-        return promisse ;
+    useEffect(fetch, [config]);
+
+    if (habits.length > 0) {
+        hideText = true;
     }
 
-    function HandleHabits() {
-        if (habits.length > 0) {
-            hideText = true;
-        }
-        useEffect(() => {
-            const promisse = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", config);
-            promisse.then(response => setHabits([...response.data]));
-        }, [habits]);
-    }
-    
     function handleDisplay(option) {
         if (option === "create") {
             setHide(false);
@@ -77,12 +69,12 @@ function Habits() {
     function handleDeletion(id) {
         if (window.confirm("Tem certeza?")){
             const promisse = axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`, config);
-            promisse.then();
+            promisse.then(fetch);
         }
     }
     
     function handlePostResponse() {
-        setHabits([...habits]);
+        fetch();
         setHabit("");
         setSelectedDays([]);
         setHide(true);
@@ -94,12 +86,21 @@ function Habits() {
         } else if (selectedDays.length === 0) {
             alert("Selecione pelo menos um dia!");
         } else {
-            trackPromise(fetch())
+            trackPromise(post())
         }
     }
 
+    function fetch() {
+        const promisse = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", config);
+        promisse.then(response => setHabits([...response.data]));
+    }
 
-    HandleHabits();
+    function post() {
+        const promisse = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", data, config);
+        promisse.then(handlePostResponse);
+        promisse.catch(response => console.log(response));
+        return promisse ;
+    }
 
     return (
         <>
