@@ -10,8 +10,7 @@ function CreateHabits({ hide, habit, setHabit, promiseInProgress, days, handleSe
                 <Input value={habit} onChange={(e) => setHabit(e.target.value)} disabled={promiseInProgress} placeholder='nome do hábito'></Input>
                 {days.map(day => (
                     <DayButton onClick={() => handleSelection(day.id)} isSelected={selectedDays.includes(day.id)} key={day.id} disabled={promiseInProgress}>{day.name}</DayButton>
-                    ))
-                }
+                ))}
             </div>
             <span>
                 <CancelButton onClick={() => handleDisplay("cancel")}>Cancelar</CancelButton>

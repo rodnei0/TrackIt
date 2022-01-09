@@ -9,7 +9,7 @@ import CreateHabits from './createhabits';
 import axios from 'axios';
 
 function Habits() {
-    const days = [  {id: 7, name: "D"}, 
+    const days = [  {id: 0, name: "D"}, 
                     {id: 1, name: "S"}, 
                     {id: 2, name: "T"}, 
                     {id: 3, name: "Q"}, 
@@ -38,6 +38,13 @@ function Habits() {
         headers: {
             "Authorization": `Bearer ${user.token}`
         }
+    }
+    
+    function fetch() {
+        const promisse = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", data, config);
+        promisse.then(handlePostResponse);
+        promisse.catch(response => console.log(response));
+        return promisse ;
     }
 
     function HandleHabits() {
@@ -70,6 +77,7 @@ function Habits() {
     function handleDeletion(id) {
         if (window.confirm("Tem certeza?")){
             const promisse = axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`, config);
+            promisse.then();
         }
     }
     
@@ -78,13 +86,6 @@ function Habits() {
         setHabit("");
         setSelectedDays([]);
         setHide(true);
-    }
-    
-    function fetch() {
-        const promisse = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", data, config);
-        promisse.then(handlePostResponse);
-        promisse.catch(response => console.log(response));
-        return promisse ;
     }
     
     function verifyHabit() {
@@ -96,6 +97,7 @@ function Habits() {
             trackPromise(fetch())
         }
     }
+
 
     HandleHabits();
 

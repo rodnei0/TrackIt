@@ -56,12 +56,22 @@ const Div = styled.div`
     }
 
     span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
         width: 69px;
         height: 69px;
 
-        background: #EBEBEB;
+        background: ${props => props.done ? '#8FC549' : '#EBEBEB'};
         border: 1px solid #E7E7E7;
         border-radius: 5px;
+
+        ion-icon {
+            font-size: 40px;
+            color: #FFFFFF;
+            --ionicon-stroke-width: 64px;
+        }
     }
 
 `;
