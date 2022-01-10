@@ -9,9 +9,9 @@ import UserContext from '../../contexts/UserContext';
 import { useContext } from 'react/cjs/react.development';
 
 function Login() {
-    const { setToken, setImage } = useContext(UserContext);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const { setToken, setImage } = useContext(UserContext);
     const { promiseInProgress } = usePromiseTracker();
     let navigate = useNavigate();
 
