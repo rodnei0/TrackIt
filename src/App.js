@@ -18,13 +18,13 @@ function App() {
 
     return (
         <UserContext.Provider value={{token, setToken, image, setImage}}>
-            <PercentageContext.Provider value={percentage}>
+            <PercentageContext.Provider value={{percentage, setPercentage}}>
                 <BrowserRouter>
                 {!mainPage && <Top />}
                     <Routes>
                         <Route path="/" element={<Login />} />
                         <Route path="/cadastro" element={<SingUp />} />
-                        <Route path="/hoje" element={<Today setMainPage={setMainPage} percentage={percentage} setPercentage={setPercentage}/>} />
+                        <Route path="/hoje" element={<Today setMainPage={setMainPage}/>} />
                         <Route path="/habitos" element={<Habits setMainPage={setMainPage}/>} />
                         <Route path="/historico" element={<History setMainPage={setMainPage}/>} />
                     </Routes>

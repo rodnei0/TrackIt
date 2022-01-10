@@ -88,6 +88,8 @@ const DayButton = styled.button`
     color: #DBDBDB;
 
     margin-right: 4px;
+
+
 `;
 
 const Input = styled.input`
@@ -149,6 +151,10 @@ const HabitsStyle = styled.div`
     padding: 18px;
 
     position: relative;
+    
+    &:hover {
+        cursor: pointer;
+      }
 
     div {
         position: absolute;

@@ -50,6 +50,10 @@ const Button = styled.button`
 
     margin-bottom: 25px;
 
+    &:hover {
+        cursor: pointer;
+      }
+      
     p {
         display: ${props => props.hide ? 'none' : 'flex'};
         justify-content: center;

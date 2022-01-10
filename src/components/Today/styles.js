@@ -42,6 +42,10 @@ const Div = styled.div`
     margin-top: 28px;
     padding: 13px;
 
+    &:hover {
+        cursor: pointer;
+      }
+
     h2 {
         font-size: 19.976px;
         line-height: 25px;

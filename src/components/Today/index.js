@@ -6,12 +6,14 @@ import ptbr from 'dayjs/locale/pt-br';
 import axios from 'axios';
 import Spinner from "../Spinner";
 import UserContext from "../../contexts/UserContext";
+import PercentageContext from '../../contexts/PercentageContext';
 
-function Today({ percentage, setPercentage, setMainPage}) {
+function Today({ setMainPage}) {
     setMainPage(false);
 
     let now = dayjs();
     const { token } = useContext(UserContext);
+    const { percentage, setPercentage } = useContext(PercentageContext)
     const { promiseInProgress } = usePromiseTracker();
     const [ habits, setHabits ] = useState([]);
     

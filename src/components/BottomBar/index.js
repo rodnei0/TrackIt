@@ -6,7 +6,7 @@ import 'react-circular-progressbar/dist/styles.css';
 import PercentageContext from "../../contexts/PercentageContext";
 
 function Bottom() {
-    const percentage = useContext(PercentageContext);
+    const { percentage } = useContext(PercentageContext);
 
     return (
         <Footer>
