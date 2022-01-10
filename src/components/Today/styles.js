@@ -6,6 +6,7 @@ const Container = styled.section`
     align-items: center;
 
     padding-top: 98px;
+    padding-bottom: 128px;
     background: #F2F2F2;
     min-height: 100vh;
 

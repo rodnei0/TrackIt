@@ -1,11 +1,10 @@
-import Spinner from "../Spinner";
+import { usePromiseTracker, trackPromise } from 'react-promise-tracker';
+import { Container, Div } from './styles';
+import { useMemo, useContext, useEffect, useState } from 'react';
 import dayjs from "dayjs";
 import ptbr from 'dayjs/locale/pt-br';
 import axios from 'axios';
-import { usePromiseTracker, trackPromise } from 'react-promise-tracker';
-import { Container, Div } from './styles';
-import { useContext, useEffect, useState } from "react/cjs/react.development";
-import { useMemo } from "react";
+import Spinner from "../Spinner";
 import UserContext from "../../contexts/UserContext";
 
 function Today({ percentage, setPercentage, setMainPage}) {

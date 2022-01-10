@@ -1,12 +1,11 @@
 import { Link, useNavigate  } from 'react-router-dom';
 import { Container, Figure, Input, Button, P, Form } from './styles';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { usePromiseTracker, trackPromise } from 'react-promise-tracker';
 import axios from 'axios';
 import logo from "../../assets/images/trackit.png";
 import Spinner from '../Spinner';
 import UserContext from '../../contexts/UserContext';
-import { useContext } from 'react';
 
 function Login() {
     const [email, setEmail] = useState("");
