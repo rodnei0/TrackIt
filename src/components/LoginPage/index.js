@@ -6,7 +6,7 @@ import axios from 'axios';
 import logo from "../../assets/images/trackit.png";
 import Spinner from '../Spinner';
 import UserContext from '../../contexts/UserContext';
-import { useContext } from 'react/cjs/react.development';
+import { useContext } from 'react';
 
 function Login() {
     const [email, setEmail] = useState("");
