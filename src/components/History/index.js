@@ -2,7 +2,8 @@ import Bottom from '../BottomBar';
 import Top from '../TopBar';
 import { Container} from './styles';
 
-function History() {
+function History({ setMainPage }) {
+    setMainPage(false);
     return (
         <>
             <Top />

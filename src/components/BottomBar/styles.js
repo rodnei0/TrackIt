@@ -29,18 +29,18 @@ const Div = styled.div`
 
     width: 91px;
     height: 91px;
-
-    border-radius: 50%;
-
     margin-bottom: 57px;
 
+    border-radius: 50%;
     background: #52B6FF;
 
-    p {
-        font-size: 17.976px;
-        line-height: 22px;
-    
-        color: #FFFFFF;
+    font-size: 17.976px;
+    line-height: 22px;
+    color: #FFFFFF;
+
+    div {
+        width: 81px;
+        height: 81px;
     }
 `;
 

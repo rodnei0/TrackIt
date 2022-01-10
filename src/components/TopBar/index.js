@@ -1,14 +1,15 @@
 import { Header, P, Figure } from './styles';
+import { useContext } from 'react/cjs/react.development';
+import UserContext from '../../contexts/UserContext';
 
 function Top() {
-    const serializedUser = localStorage.getItem("user");
-    const user = JSON.parse(serializedUser);
-
+    const { image } = useContext(UserContext);
+    
     return (
         <Header>
             <P>TrackIt</P>
             <Figure>
-                <img src={user.image} alt="profile"></img>
+                <img src={image} alt="profile"></img>
             </Figure>
         </Header>
     )

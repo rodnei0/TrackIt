@@ -1,31 +1,29 @@
-import Bottom from "../BottomBar";
-import Top from "../TopBar";
+import Spinner from "../Spinner";
 import dayjs from "dayjs";
 import ptbr from 'dayjs/locale/pt-br';
 import axios from 'axios';
 import { usePromiseTracker, trackPromise } from 'react-promise-tracker';
 import { Container, Div } from './styles';
-import { useEffect, useState } from "react/cjs/react.development";
+import { useContext, useEffect, useState } from "react/cjs/react.development";
 import { useMemo } from "react";
-import Spinner from "../Spinner";
+import UserContext from "../../contexts/UserContext";
 
-function Today() {
+function Today({ percentage, setPercentage, setMainPage}) {
+    setMainPage(false);
+
     let now = dayjs();
-
+    const { token } = useContext(UserContext);
     const { promiseInProgress } = usePromiseTracker();
     const [ habits, setHabits ] = useState([]);
-    const serializedUser = localStorage.getItem("user");
-    const user = JSON.parse(serializedUser);
-
-
+    
     const config = useMemo(() => {
-        const token = {
+        const teste = {
             headers: {
-                "Authorization": `Bearer ${user.token}`
+                "Authorization": `Bearer ${token}`
             }
         }
-        return token;
-    }, [user.token]);
+        return teste;
+    }, [token]);
 
     useEffect(fetch, [config]);
 
@@ -44,17 +42,32 @@ function Today() {
     function fetch() {
         const promisse = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today", config);
         promisse.then(response => setHabits(response.data));
+        promisse.catch(response => console.log(response))
     };
 
+    function HandlePercentage() {
+        const total = habits.length;
+        const done = habits.filter(habit => habit.done === true).length;
+
+        useEffect(() => {
+            if (total !== 0) {
+                setPercentage(Math.round((done / total) * 100));
+            }
+        });
+
+        if (done === 0) {
+            return "Nenhum hábito concluído ainda";
+        } else {
+            return `${percentage} % dos hábitos concluídos`;
+        }
+    }
+
     return (
-        <>
-            <Top />
             <Container>
                 <h1>{now.locale(ptbr).format("dddd, DD/MM")}</h1>
-                <h3>{!habits.length > 0 ? 'Nenhum hábito concluído ainda' : 'teste'}</h3>
+                <h3>{HandlePercentage()}</h3>
                 {habits.map(habit => (
-                    // <Div onClick={() => handleSelection(habit.done, habit.id)} done={habit.done} key={habit.id}>
-                    <Div onClick={() => trackPromise( handleSelection(habit.done, habit.id))} done={habit.done} disabled={promiseInProgress} key={habit.id}>
+                    <Div onClick={() => trackPromise(handleSelection(habit.done, habit.id))} done={habit.done} disabled={promiseInProgress} key={habit.id}>
                         <div>
                             <h2>{habit.name}</h2>
                             <p>Sequência atual: <strong>{habit.currentSequence} dias</strong></p>
@@ -64,8 +77,6 @@ function Today() {
                     </Div>
                 ))}
             </Container>
-            <Bottom />
-        </>
     );
 };
 

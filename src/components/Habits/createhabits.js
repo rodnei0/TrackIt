@@ -1,7 +1,6 @@
 import { Span, Input, CancelButton, SaveButton, DayButton } from './styles';
 import Spinner from '../Spinner';
 
-
 function CreateHabits({ hide, habit, setHabit, promiseInProgress, days, handleSelection, selectedDays, handleDisplay, verifyHabit}) {
     return (
         <>

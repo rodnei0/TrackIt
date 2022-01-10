@@ -8,7 +8,8 @@ import MyHabits from './myhabits';
 import CreateHabits from './createhabits';
 import axios from 'axios';
 
-function Habits() {
+function Habits({ setMainPage }) {
+    setMainPage(false);
     const days = [  {id: 0, name: "D"}, 
                     {id: 1, name: "S"}, 
                     {id: 2, name: "T"}, 
@@ -89,7 +90,7 @@ function Habits() {
             trackPromise(post())
         }
     }
-
+    
     function fetch() {
         const promisse = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", config);
         promisse.then(response => setHabits([...response.data]));

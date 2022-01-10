@@ -5,13 +5,23 @@ import { usePromiseTracker, trackPromise } from 'react-promise-tracker';
 import axios from 'axios';
 import logo from "../../assets/images/trackit.png";
 import Spinner from '../Spinner';
+import UserContext from '../../contexts/UserContext';
+import { useContext } from 'react/cjs/react.development';
 
 function Login() {
+    const { setToken, setImage } = useContext(UserContext);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
     const { promiseInProgress } = usePromiseTracker();
     let navigate = useNavigate();
+
+    if (localStorage.length > 0) {
+        const serializedUser = localStorage.getItem("user");
+        const user = JSON.parse(serializedUser);
+        setToken(user.token);
+        setImage(user.image);
+        navigate("/hoje");
+    }
 
     function handleSignIn(event) {
         event.preventDefault();
@@ -30,6 +40,8 @@ function Login() {
 
         function handleResponse(response) {
             const user = response.data;
+            setImage(user.image);
+            setToken(user.token);
             const serializedUser = JSON.stringify(user);
             localStorage.setItem("user", serializedUser);
             navigate("/hoje");
@@ -43,7 +55,6 @@ function Login() {
             }
             console.dir(error);
         }
-        
         trackPromise(fetch());
     }
 
