@@ -1,7 +1,6 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { usePromiseTracker, trackPromise } from 'react-promise-tracker';
 import { Container, Div, H3 } from './styles';
-import { useEffect } from 'react/cjs/react.development';
 import Top from '../TopBar';
 import Bottom from '../BottomBar';
 import MyHabits from './myhabits';
