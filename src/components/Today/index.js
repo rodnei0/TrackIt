@@ -18,12 +18,12 @@ function Today({ setMainPage}) {
     const [ habits, setHabits ] = useState([]);
     
     const config = useMemo(() => {
-        const teste = {
+        const data = {
             headers: {
                 "Authorization": `Bearer ${token}`
             }
         }
-        return teste;
+        return data;
     }, [token]);
 
     useEffect(fetch, [config]);

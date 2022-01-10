@@ -1,10 +1,11 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, useContext } from 'react';
 import { usePromiseTracker, trackPromise } from 'react-promise-tracker';
 import { Container, Div, H3 } from './styles';
 import Top from '../TopBar';
 import Bottom from '../BottomBar';
 import MyHabits from './myhabits';
 import CreateHabits from './createhabits';
+import UserContext from '../../contexts/UserContext';
 import axios from 'axios';
 
 function Habits({ setMainPage }) {
@@ -23,9 +24,7 @@ function Habits({ setMainPage }) {
     const [ habit, setHabit ] = useState("");
     const [ habits, setHabits ] = useState([]);
     const { promiseInProgress } = usePromiseTracker();
-
-    const serializedUser = localStorage.getItem("user");
-    const user = JSON.parse(serializedUser);
+    const { token } = useContext(UserContext);
     
     let hideText = false;
 
@@ -35,13 +34,13 @@ function Habits({ setMainPage }) {
     };
 
     const config = useMemo(() => {
-        const token = {
+        const data = {
             headers: {
-                "Authorization": `Bearer ${user.token}`
+                "Authorization": `Bearer ${token}`
             }
         }
-        return token;
-    }, [user.token]);
+        return data;
+    }, [token]);
     
     useEffect(fetch, [config]);
 
