@@ -1,36 +1,73 @@
+import { Container} from './styles';
+import { useMemo, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import Bottom from '../BottomBar';
 import Top from '../TopBar';
-import { Container} from './styles';
+import axios from 'axios';
+// import dayjs from 'dayjs';
+import UserContext from '../../contexts/UserContext';
 import 'react-calendar/dist/Calendar.css';
-import { useState } from 'react/cjs/react.development';
-import dayjs from 'dayjs';
 import './style.css';
+
 
 function History({ setMainPage }) {
     setMainPage(false);
     
     const [value, setValue] = useState(new Date());
+    const [ setHabits ] = useState([]);
+    // const [ habits, setHabits ] = useState([]);
+    const { token } = useContext(UserContext);
 
     function onChange(nextValue) {
         setValue(nextValue);
     }
 
-    let now = dayjs();
-    let testDate = `${now.format("ddd MMM D YYYY")} 00:00:00 GMT-0400 (Amazon Standard Time)`;
-
-    const datesToAddClassTo = [testDate];
-
-    function tileClassName({ date, view }) {
-        // Add class to tiles in month view only
-        if (view === 'month') {
-            // Check if a date React-Calendar wants to check is on the list of dates to add class to
-            if (datesToAddClassTo.find(dDate => dDate == date)) {
-                return 'myClassName';
+    const config = useMemo(() => {
+        const data = {
+            headers: {
+                "Authorization": `Bearer ${token}`
             }
         }
+        return data;
+    }, [token]);
+
+    // let now = dayjs();
+    // let testDate = `${now.format("ddd MMM D YYYY")} 00:00:00 GMT-0400 (Amazon Standard Time)`;
+
+    // const datesToAddClassTo = [testDate];
+
+    // function tileClassName({ date, view }) {
+    //     if (view === 'month') {
+    //         if (datesToAddClassTo.find(dDate => dDate == date)) {
+    //             if(filterHabits()) {
+    //                 return 'allDone'
+    //             } else {
+    //                 return 'notAllDone'
+    //             }
+    //         }
+    //     }
+    // }
+
+    useEffect(fetch, [config, setHabits]);
+
+    function fetch() {
+        const promisse = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/history/daily", config);
+        promisse.then(response => setHabits(...response.data));
     }
 
+    // function filterHabits() {
+    //     console.log(habits);
+    //     if (habits.habits !== undefined) {
+    //         let filteredHabits = [];
+    //         filteredHabits = habits.habits.filter(habit => habit.done);
+    //         if (filteredHabits.length === habits.habits.length) {
+    //             return true
+    //         } else {
+    //             return false
+    //         }
+    //     } 
+    // }
 
     return (
         <>
@@ -42,7 +79,7 @@ function History({ setMainPage }) {
                             value={value}
                             locale='pt-br'
                             calendarType='US'
-                            tileClassName={tileClassName}
+                            // tileClassName={tileClassName}
                             />
             </Container>
             <Bottom />

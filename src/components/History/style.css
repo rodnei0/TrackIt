@@ -1,3 +1,7 @@
-.myClassName {
+.allDone {
+    background-color: green;
+}
+
+.notAllDone {
     background-color: red;
 }

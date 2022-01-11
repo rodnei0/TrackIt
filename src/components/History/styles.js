@@ -17,7 +17,6 @@ const Container = styled.section`
         width: 340px;
     }
 
-    
     h3 {
         font-size: 17.976px;
         line-height: 22px;
