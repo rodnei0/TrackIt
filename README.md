@@ -1,7 +1,10 @@
 # TrackIt
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+![alt text](https://github.com/rodnei0/track-It/blob/main/src/assets/images/trackitapp.png)
+
+Availabe at https://track-it-rodnei0.vercel.app/
+
+## About
 
 In the project directory, you can run:
 
