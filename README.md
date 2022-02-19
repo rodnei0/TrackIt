@@ -1,8 +1,11 @@
 # TrackIt
+<p align="center">
+  <image src="https://github.com/rodnei0/track-It/blob/main/src/assets/images/track-it.gif" />
+</p>
+<p align="center">
+  Availabe at https://track-it-rodnei0.vercel.app/
+</p>
 
-![image](https://github.com/rodnei0/track-It/blob/main/src/assets/images/trackitapp.png)
-
-Availabe at https://track-it-rodnei0.vercel.app/
 
 ## About
 
